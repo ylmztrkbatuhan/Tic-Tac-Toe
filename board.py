@@ -1,3 +1,5 @@
+from pkg_resources import empty_provider
+
 from player import Player
 from move import Move
 
@@ -82,19 +84,15 @@ class Board:
         return markers_count == 3
 
 
-board = Board()
-player = Player()
+    def check_is_tie(self):
+        empty_counter = 0
 
-move1 = player.get_move()
-move2 = player.get_move()
-move3 = player.get_move()
+        for row in self.game_board:
+            empty_counter += row.count(Board.EMPTY_CELL)
 
-board.print_board()
+        return empty_counter == 0
 
-board.submit_move(player, move1)
-board.submit_move(player, move2)
-board.submit_move(player, move3)
-
-board.print_board()
-
-print(board.check_is_game_over(player, move3))
+    def reset_board(self):
+        self.game_board = [[0, 0, 0],
+                           [0, 0, 0],
+                           [0, 0, 0]]
