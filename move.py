@@ -29,5 +29,3 @@ class Move:
 
 
 
-move = Move(4)
-print(move.is_valid())

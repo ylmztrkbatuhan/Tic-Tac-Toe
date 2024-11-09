@@ -21,9 +21,9 @@ class Board:
             print("  |", end="")
             for column in row:
                 if column == Board.EMPTY_CELL:
-                    print("   |", end="")
+                    print("  |", end="")
                 else:
-                    print(f"{column}  |", end="")
+                    print(f" {column} |", end="")
             print()
         print()
 
@@ -40,7 +40,7 @@ class Board:
         if value == Board.EMPTY_CELL:
             self.game_board[row][col] = player.marker
         else:
-            print("This position is alredy taken. Please enter another one.")
+            print("This position is already taken. Please enter another one.")
 
     def check_is_game_over(self, player, last_move):
         return ((self.check_row(player, last_move)
@@ -52,7 +52,7 @@ class Board:
         row_index = last_move.get_row()
         board_row = self.game_board[row_index]
 
-        return board_row.couont(player.marker) == 3
+        return board_row.count(player.marker) == 3
 
     def check_column(self, player, last_move):
         markers_count = 0
@@ -70,7 +70,7 @@ class Board:
             if self.game_board[i][i] == player.marker:
                 markers_count += 1
 
-        return  markers_count == 3
+        return markers_count == 3
 
     def check_antidiagonal(self, player):
         markers_count = 0
@@ -80,3 +80,21 @@ class Board:
                 markers_count += 1
 
         return markers_count == 3
+
+
+board = Board()
+player = Player()
+
+move1 = player.get_move()
+move2 = player.get_move()
+move3 = player.get_move()
+
+board.print_board()
+
+board.submit_move(player, move1)
+board.submit_move(player, move2)
+board.submit_move(player, move3)
+
+board.print_board()
+
+print(board.check_is_game_over(player, move3))
