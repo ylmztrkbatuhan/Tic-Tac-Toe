@@ -1,7 +1,6 @@
-from pkg_resources import empty_provider
-
 from player import Player
 from move import Move
+
 
 class Board:
 
@@ -96,3 +95,5 @@ class Board:
         self.game_board = [[0, 0, 0],
                            [0, 0, 0],
                            [0, 0, 0]]
+
+
